@@ -8,7 +8,7 @@ export default function App() {
     setIdade(event.target.value);
   }
   const handleBtCalcularClick = () => {
-    setDtNasc(2022 - idade);
+    setDtNasc(dtNasc - idade);
   }
   return (
     <div>
@@ -20,11 +20,26 @@ export default function App() {
 
       <p>
         Ano de Nascimento:
-        <input type="number" readonly value={dtNasc} />
+        <input type="number" value={dtNasc} readOnly />
       </p>
-      <button onClick={handleBtCalcularClick} > 
-        Calcular data de Nascimento
-      </button>
+    
+      <button disabled={idade === 0 } onClick={handleBtCalcularClick}>Calcular</button>
+      <input type="number" value={idade} disabled={idade === 0} />
+      <input type="text" value={dtNasc} disabled={idade === 0} />
+      <button onClick={() => {
+        setIdade(0);
+        setDtNasc(new Date());
+      }
+      }>Limpar</button>
+
+      <input type="checkbox" />
+      <label>Fez aniversário no ano corrente?</label>
+      <input type="number" value={idade} onChange={handleIdadeChange} />
+      <input type="text" value={dtNasc} readOnly />
+      <button onClick={handleBtCalcularClick}>Calcular</button>
+      <button disabled={idade === 0}>Calcular</button>
+      <input type="number" value={idade} disabled={idade === 0} />
+      <input type="text" value={dtNasc} disabled={idade === 0} />
 
 
     </div>
